@@ -1,3 +1,2 @@
-Firebase Demo
+This android poject was made by INPT students for educational purpose 
 
-This is the code base for the tutorials uploded on Programming Knowledge Youtube Channel.
