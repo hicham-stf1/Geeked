@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "997565463159",
+    "firebase_url": "https://instagramcloneapp-4b2f2-default-rtdb.firebaseio.com",
+    "project_id": "instagramcloneapp-4b2f2",
+    "storage_bucket": "instagramcloneapp-4b2f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997565463159:android:f1dfb8501684546bbd6472",
+        "android_client_info": {
+          "package_name": "com.aseds.geeked"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997565463159-r4emkb4ba3asdarulqpnnu01vf2qqlkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTrMgp-MG-U7uexUGdey9P7GUcW5oCsqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997565463159-r4emkb4ba3asdarulqpnnu01vf2qqlkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997565463159:android:fa2a93ce541b295ebd6472",
+        "android_client_info": {
+          "package_name": "com.example.ajinhedrou.instagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997565463159-r4emkb4ba3asdarulqpnnu01vf2qqlkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTrMgp-MG-U7uexUGdey9P7GUcW5oCsqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997565463159-r4emkb4ba3asdarulqpnnu01vf2qqlkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997565463159:android:d62eddad789b97cdbd6472",
+        "android_client_info": {
+          "package_name": "com.example.fb_datatolistview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997565463159-r4emkb4ba3asdarulqpnnu01vf2qqlkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTrMgp-MG-U7uexUGdey9P7GUcW5oCsqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997565463159-r4emkb4ba3asdarulqpnnu01vf2qqlkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
