@@ -105,6 +105,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 Intent intent = new Intent(mContext, CommentActivity.class);
                 intent.putExtra("postId", post.getPostid());
                 intent.putExtra("authorId", post.getPublisher());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });
@@ -115,6 +116,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 Intent intent = new Intent(mContext, CommentActivity.class);
                 intent.putExtra("postId", post.getPostid());
                 intent.putExtra("authorId", post.getPublisher());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });
@@ -170,8 +172,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             public void onClick(View v) {
                 mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new PostDetailFragment()).commit();
+               /* ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new PostDetailFragment()).commit(); */
             }
         });
 
@@ -181,6 +183,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
                 Intent intent = new Intent(mContext, FollowersActivity.class);
                 intent.putExtra("id", post.getPublisher());
                 intent.putExtra("title", "likes");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });
