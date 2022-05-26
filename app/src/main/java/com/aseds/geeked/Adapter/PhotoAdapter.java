@@ -11,9 +11,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aseds.geeked.Fragments.PostDetailFragment;
+import com.aseds.geeked.Model.Post;
 import com.aseds.geeked.R;
 
-import com.rishav.firebasedemo.Model.Post;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
         this.mContext = mContext;
         this.mPosts = mPosts;
     }
+
+
 
     @NonNull
     @Override

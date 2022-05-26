@@ -1,4 +1,4 @@
-package com.rishav.firebasedemo.Model;
+package com.aseds.geeked.Model;
 
 public class Notification {
     private String userid;

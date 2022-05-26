@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.aseds.geeked.Adapter.TagAdapter;
 import com.aseds.geeked.Adapter.UserAdapter;
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
-import com.rishav.firebasedemo.Model.User;
+
 
 
 import java.util.ArrayList;

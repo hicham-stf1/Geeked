@@ -16,6 +16,8 @@ import com.aseds.geeked.CommentActivity;
 import com.aseds.geeked.FollowersActivity;
 import com.aseds.geeked.Fragments.PostDetailFragment;
 import com.aseds.geeked.Fragments.ProfileFragment;
+import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,9 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.hendraanggrian.appcompat.widget.SocialTextView;
-import com.rishav.firebasedemo.Model.Post;
-import com.rishav.firebasedemo.Model.User;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;

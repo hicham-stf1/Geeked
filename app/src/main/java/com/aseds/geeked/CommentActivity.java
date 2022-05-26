@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aseds.geeked.Adapter.CommentAdapter;
+import com.aseds.geeked.Model.Comment;
+import com.aseds.geeked.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rishav.firebasedemo.Model.Comment;
-import com.rishav.firebasedemo.Model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -157,7 +157,8 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                if (user.getImageurl().equals("default")) {
+
+                if (user != null && user.getImageurl() != null && user.getImageurl().equals("default")) {
                     imageProfile.setImageResource(R.mipmap.ic_launcher);
                 } else {
                     Picasso.get().load(user.getImageurl()).into(imageProfile);

@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aseds.geeked.Fragments.PostDetailFragment;
 import com.aseds.geeked.Fragments.ProfileFragment;
+import com.aseds.geeked.Model.Notification;
+import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,9 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-import com.rishav.firebasedemo.Model.Notification;
-import com.rishav.firebasedemo.Model.Post;
-import com.rishav.firebasedemo.Model.User;
+
 
 import com.squareup.picasso.Picasso;
 

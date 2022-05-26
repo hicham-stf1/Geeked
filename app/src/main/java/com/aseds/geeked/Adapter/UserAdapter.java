@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aseds.geeked.Fragments.ProfileFragment;
 import com.aseds.geeked.MainActivity;
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.rishav.firebasedemo.Model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -39,6 +39,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         this.mUsers = mUsers;
         this.isFargment = isFargment;
     }
+
 
     @NonNull
     @Override

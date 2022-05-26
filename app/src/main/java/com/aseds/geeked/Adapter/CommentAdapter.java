@@ -13,7 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aseds.geeked.CommentActivity;
 import com.aseds.geeked.MainActivity;
+import com.aseds.geeked.Model.Comment;
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,8 +26,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rishav.firebasedemo.Model.Comment;
-import com.rishav.firebasedemo.Model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -45,6 +46,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         this.mComments = mComments;
         this.postId = postId;
     }
+
+
 
     @NonNull
     @Override

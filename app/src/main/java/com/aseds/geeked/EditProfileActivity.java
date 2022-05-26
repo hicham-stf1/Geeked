@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,7 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import com.rishav.firebasedemo.Model.User;
+
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -75,12 +76,13 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                fullname.setText(user.getName());
-                username.setText(user.getUsername());
-                bio.setText(user.getBio());
-                Picasso.get().load(user.getImageurl()).into(imageProfile);
+                if (user != null) {
+                    fullname.setText(user.getName());
+                    username.setText(user.getUsername());
+                    bio.setText(user.getBio());
+                    Picasso.get().load(user.getImageurl()).into(imageProfile);
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

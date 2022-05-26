@@ -12,11 +12,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.aseds.geeked.Adapter.UserAdapter;
+import com.aseds.geeked.Model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rishav.firebasedemo.Model.User;
+
 
 import java.util.ArrayList;
 import java.util.List;

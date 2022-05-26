@@ -19,6 +19,9 @@ import android.widget.TextView;
 import com.aseds.geeked.Adapter.PhotoAdapter;
 import com.aseds.geeked.EditProfileActivity;
 import com.aseds.geeked.FollowersActivity;
+
+import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
 import com.aseds.geeked.RetailerStartUpScreen;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,10 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rishav.firebasedemo.Model.Post;
-import com.rishav.firebasedemo.Model.User;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -343,13 +343,17 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+             if(user != null ){
+                 if (user.getImageurl()!= null && user.getImageurl().equals("default")) {
+                     imageProfile.setImageResource(R.mipmap.ic_launcher);
+             } else {
+                 Picasso.get().load(R.mipmap.ic_launcher).into(imageProfile);
+             }
 
-                assert user != null;
-                Picasso.get().load(user.getImageurl()).into(imageProfile);
                 username.setText(user.getUsername());
                 fullname.setText(user.getName());
                 bio.setText(user.getBio());
-            }
+            }}
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
