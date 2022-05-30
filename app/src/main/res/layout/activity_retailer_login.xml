@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:transitionName="transition_login"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="#F8FAFB"
     android:padding="30dp"
     tools:context=".LoginActivity">
 
@@ -15,28 +15,40 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/back_button"
+            android:id="@+id/login_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:src="@drawable/general_back_icon" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/first"
-            android:text="Login"
-            android:textAllCaps="true"
-            android:textColor="@color/colorBlack"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/Signup_back_button1"
+            android:layout_width="185dp"
+            android:layout_height="102dp"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:layout_marginTop="50px"
+            android:src="@drawable/latestgeeked"
+            android:transitionName="transition_back_arrow_btn" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
+            <TextView
+            android:id="@+id/Signup_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/first"
+            android:gravity="center"
+            android:text="LOGIN"
+            android:layout_marginTop="10px"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:transitionName="transition_title_text" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.AppCompat.ActionBar.Solid"

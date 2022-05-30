@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private TextView registerUser;
+    private ImageView back;
 
     private FirebaseAuth mAuth;
 
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         registerUser = findViewById(R.id.register_user);
+        back = findViewById(R.id.login_back_button);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -46,6 +49,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this , RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
             }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                        startActivity(new Intent(LoginActivity.this,RetailerStartUpScreen.class));
+                    }
         });
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void loginUser(String email, String password) {

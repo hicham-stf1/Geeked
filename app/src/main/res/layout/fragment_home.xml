@@ -24,11 +24,10 @@
                     android:layout_height="30dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="20dp"
-                    android:text="Geeked"
-                    android:textSize="50px"
-                    android:textColor="@color/colorBlack"
-                    android:fontFamily="@font/first"
-                    />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Home"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"

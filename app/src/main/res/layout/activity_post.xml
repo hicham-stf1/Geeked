@@ -24,22 +24,24 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/ic_close"
-                    android:id="@+id/close"/>
+                    android:src="@drawable/ic_close" />
 
-                <TextView
+                <ImageView
+                    android:id="@+id/post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="POST"
-                    android:id="@+id/post"
-                    android:textSize="18sp"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_centerVertical="true"/>
+                    android:background="@drawable/post"
+                    android:backgroundTint="@color/colorBlack"
+                    android:text="POST"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
 
             </RelativeLayout>
 
@@ -65,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Description..."
+            android:hint="Enter your post description..."
             android:maxLines="5"
             android:id="@+id/description"
             app:socialFlags="hashtag|mention"

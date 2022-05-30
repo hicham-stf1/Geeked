@@ -46,7 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private CircleImageView imageProfile;
     private ImageView save;
     private TextView changePhoto;
-    private MaterialEditText fullname;
+    private MaterialEditText job;
     private MaterialEditText username;
     private MaterialEditText bio;
 
@@ -65,7 +65,7 @@ public class EditProfileActivity extends AppCompatActivity {
         imageProfile = findViewById(R.id.image_profile);
         save = findViewById(R.id.save);
         changePhoto = findViewById(R.id.change_photo);
-        fullname = findViewById(R.id.fullname);
+        job = findViewById(R.id.fullname);
         username = findViewById(R.id.username);
         bio = findViewById(R.id.bio);
 
@@ -77,7 +77,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 if (user != null) {
-                    fullname.setText(user.getName());
+                    job.setText(user.getName());
                     username.setText(user.getUsername());
                     bio.setText(user.getBio());
                     Picasso.get().load(user.getImageurl()).into(imageProfile);
@@ -121,7 +121,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private void updateProfile() {
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("fullname", fullname.getText().toString());
+        map.put("job", job.getText().toString());
         map.put("username", username.getText().toString());
         map.put("bio", bio.getText().toString());
 

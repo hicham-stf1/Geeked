@@ -13,23 +13,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/retailer_grow_image" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
+            android:layout_marginBottom="20px"
             android:fontFamily="@font/first"
             android:gravity="center"
-            android:text="Grow \n Your Network"
+            android:layout_gravity="center"
+            android:text="Grow \n Your Career"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/colorBlack"
-            android:textSize="36sp" />
+            android:textSize="30sp" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:elevation="10dp"
+            android:src="@drawable/retailer_grow_image" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +41,7 @@
             android:gravity="center"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="80dp"
-            android:text="We will help you to grow your NETWORK"
+            android:text="We will help you to grow your CAREER"
             android:textAlignment="center" />
 
         <LinearLayout

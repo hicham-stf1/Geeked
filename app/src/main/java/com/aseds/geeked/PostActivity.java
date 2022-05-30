@@ -45,7 +45,7 @@ public class PostActivity extends AppCompatActivity {
 
     private ImageView close;
     private ImageView imageAdded;
-    private TextView post;
+    private ImageView post;
     SocialAutoCompleteTextView description;
 
     @Override
