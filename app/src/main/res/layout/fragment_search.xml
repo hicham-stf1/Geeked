@@ -15,21 +15,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar"
-            android:background="?android:attr/windowBackground">
+
+            android:background="@color/yellow">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="80px"
                 android:layout_height="70px"
                 android:layout_marginLeft="20pt"
                 android:src="@drawable/ic_search"/>
 
             <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
                 android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="70px"
+                android:layout_width="800px"
+                android:layout_height="90px"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@android:color/transparent"
+                android:background="@drawable/search_back"
                 android:hint="Search..."
                 android:paddingLeft="15px"
                 tools:ignore="TouchTargetSizeCheck" />

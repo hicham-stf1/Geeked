@@ -43,14 +43,15 @@ private static final int SPLASH_TIMER=4000;//duration of animation
             @Override
             public void run() {
                 if (FirebaseAuth.getInstance().getCurrentUser() != null){
-                    startActivity(new Intent(SplashScreen.this , MainActivity.class));
+
+                  startActivity(new Intent(SplashScreen.this , MainActivity.class));
                     finish();
-                }else {
+               } else {
                     Intent intent=new Intent(SplashScreen.this, RetailerStartUpScreen.class);
                     startActivity(intent);
                     finish();
-            }
-            }
+
+            }}
         },SPLASH_TIMER);
     }
 }

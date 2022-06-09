@@ -8,10 +8,10 @@
     tools:context=".FollowersActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        android:id="@+id/toolbar"/>
+        android:background="@color/yellow" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

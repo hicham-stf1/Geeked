@@ -102,8 +102,9 @@
                 android:layout_height="wrap_content"
                 android:text="Login"
                 android:id="@+id/login"
-                android:background="@color/colorBlack"
-                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:background="@color/yellow"
+                android:textColor="@color/colorBlack"
                 android:layout_marginTop="20dp"/>
             <Button
                 android:layout_width="wrap_content"

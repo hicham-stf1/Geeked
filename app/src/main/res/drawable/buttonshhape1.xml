@@ -10,4 +10,5 @@
     <!--android:dashGap="1dp"
     android:dashWidth="4dp"-->
     <corners android:radius="10dp" />
+    <stroke android:width="0.5dp" android:color="@color/colorBlack"/>
 </shape>

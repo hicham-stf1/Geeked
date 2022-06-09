@@ -152,10 +152,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:background="@color/colorBlack"
+            android:background="@color/yellow"
             android:elevation="8dp"
+            android:textStyle="bold"
             android:text="@string/register"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:transitionName="transition_login_btn" />
 
         <Button

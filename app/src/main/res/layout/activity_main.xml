@@ -10,8 +10,18 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom"
-        />
+        android:layout_above="@id/bottom">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/yellow"
+            android:contentDescription="add Post"
+            android:src="@drawable/add" />
+    </FrameLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,11 +33,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/bottom_navigation"
-            app:labelVisibilityMode="labeled"
+            app:labelVisibilityMode="unlabeled"
             app:itemTextColor="@color/colorBlack"
             app:itemIconTint="@color/selector"
             android:background="#F8FAFB"
             app:menu="@menu/bottom_menu"/>
+
+
+
 
 
     </com.google.android.material.appbar.AppBarLayout>

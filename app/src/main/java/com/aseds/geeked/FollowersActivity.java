@@ -86,8 +86,7 @@ public class FollowersActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     idList.add((snapshot.getKey()));
                 }
-
-                showUsers();
+                getUsers();
             }
 
             @Override
@@ -95,7 +94,6 @@ public class FollowersActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void getFollowings() {
@@ -108,7 +106,7 @@ public class FollowersActivity extends AppCompatActivity {
                     idList.add((snapshot.getKey()));
                 }
 
-                showUsers();
+                getUsers();
             }
 
             @Override
@@ -116,7 +114,6 @@ public class FollowersActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void getLikes() {
@@ -128,8 +125,7 @@ public class FollowersActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     idList.add((snapshot.getKey()));
                 }
-
-                showUsers();
+                getUsers();
             }
 
             @Override
@@ -137,11 +133,9 @@ public class FollowersActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-    private void showUsers() {
+    private void getUsers() {
 
         FirebaseDatabase.getInstance().getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override

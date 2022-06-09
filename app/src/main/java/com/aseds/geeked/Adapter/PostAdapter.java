@@ -253,10 +253,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(firebaseUser.getUid()).exists()) {
-                    imageView.setImageResource(R.drawable.ic_liked);
+                    imageView.setImageResource(R.drawable.clapped);
                     imageView.setTag("liked");
                 } else {
-                    imageView.setImageResource(R.drawable.ic_like);
+                    imageView.setImageResource(R.drawable.clap);
                     imageView.setTag("like");
                 }
             }

@@ -7,23 +7,33 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.aseds.geeked.Fragments.HomeFragment;
-import com.aseds.geeked.Fragments.NotificationFragment;
 import com.aseds.geeked.Fragments.ProfileFragment;
 import com.aseds.geeked.Fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 ;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private Fragment selectorFragment;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(MainActivity.this,PostActivity.class));
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,14 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         selectorFragment = new SearchFragment();
                         break;
 
-                    case R.id.nav_add :
-                        selectorFragment = null;
-                        startActivity(new Intent(MainActivity.this , PostActivity.class));
-                        break;
 
-                    case R.id.nav_heart :
-                        selectorFragment = new NotificationFragment();
-                        break;
 
                     case R.id.nav_profile :
                         selectorFragment = new ProfileFragment();

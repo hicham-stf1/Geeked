@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="20px"
             android:fontFamily="@font/first"
             android:gravity="center"
@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:elevation="10dp"
-            android:src="@drawable/retailer_grow_image" />
+            android:layout_marginTop="60px"
+            android:src="@drawable/career_progress" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
             android:fontFamily="@font/first"
             android:gravity="center"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:text="We will help you to grow your CAREER"
             android:textAlignment="center" />
 
