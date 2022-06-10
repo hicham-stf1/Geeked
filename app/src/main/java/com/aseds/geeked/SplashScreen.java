@@ -1,7 +1,6 @@
 package com.aseds.geeked;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -13,10 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.okhttp.internal.tls.RealTrustRootIndex;
 
 
 public class SplashScreen extends AppCompatActivity {
+
 ImageView backgroundImage;
 TextView poweredByLine;
 Animation sideAnim, bottomAnim;
@@ -47,7 +46,7 @@ private static final int SPLASH_TIMER=4000;//duration of animation
                   startActivity(new Intent(SplashScreen.this , MainActivity.class));
                     finish();
                } else {
-                    Intent intent=new Intent(SplashScreen.this, RetailerStartUpScreen.class);
+                    Intent intent=new Intent(SplashScreen.this, FirstScreen.class);
                     startActivity(intent);
                     finish();
 

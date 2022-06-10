@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aseds.geeked.Adapter.PostAdapter;
-import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Adapter.ArticleAdapter;
+import com.aseds.geeked.Model.Article;
 import com.aseds.geeked.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,38 +27,39 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView recyclerViewPosts;
-    private PostAdapter postAdapter;
-    private List<Post> postList;
-
     private List<String> followingList;
+
+    private RecyclerView recyclerViewForArticls;
+    private ArticleAdapter articleAdapter;
+    private List<Article> listOfArticls;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerViewPosts = view.findViewById(R.id.recycler_view_posts);
-        recyclerViewPosts.setHasFixedSize(true);
+        recyclerViewForArticls = view.findViewById(R.id.recycler_view_posts);
+        recyclerViewForArticls.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
-        recyclerViewPosts.setLayoutManager(linearLayoutManager);
-        postList = new ArrayList<>();
+        recyclerViewForArticls.setLayoutManager(linearLayoutManager);
+        listOfArticls = new ArrayList<>();
 
-        postAdapter = new PostAdapter(getActivity().getApplicationContext(), postList);
-        recyclerViewPosts.setAdapter(postAdapter);
+        articleAdapter = new ArticleAdapter(getActivity().getApplicationContext(), listOfArticls);
+        recyclerViewForArticls.setAdapter(articleAdapter);
 
         followingList = new ArrayList<>();
 
-        checkFollowingUsers();
-
+        //Get the following users
+        verifyFollowingUsers();
         return view;
     }
 
-    private void checkFollowingUsers() {
+    private void verifyFollowingUsers() {
 
-        FirebaseDatabase.getInstance().getReference().child("Follow").child(FirebaseAuth.getInstance()
+        //read following users from database
+        FirebaseDatabase.getInstance().getReference().child("follow").child(FirebaseAuth.getInstance()
                 .getCurrentUser().getUid()).child("following").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -67,7 +68,8 @@ public class HomeFragment extends Fragment {
                     followingList.add(snapshot.getKey());
                 }
                 followingList.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                readPosts();
+                //read all posts of followings users
+                getAllArticls();
             }
 
             @Override
@@ -78,22 +80,23 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void readPosts() {
+    private void getAllArticls() {
 
-        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+        //read all posts from databases relted to the followings of user
+        FirebaseDatabase.getInstance().getReference().child("Articls").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                postList.clear();
+                listOfArticls.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = snapshot.getValue(Post.class);
+                    Article post = snapshot.getValue(Article.class);
 
                     for (String id : followingList) {
                         if (post.getPublisher().equals(id)){
-                            postList.add(post);
+                            listOfArticls.add(post);
                         }
                     }
                 }
-                postAdapter.notifyDataSetChanged();
+                articleAdapter.notifyDataSetChanged();
             }
 
             @Override

@@ -12,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aseds.geeked.Adapter.PostAdapter;
-import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Adapter.ArticleAdapter;
+
+import com.aseds.geeked.Model.Article;
 import com.aseds.geeked.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,12 +26,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDetailFragment extends Fragment {
+public class ArticleDetailFragment extends Fragment {
 
     private String postId;
     private RecyclerView recyclerView;
-    private PostAdapter postAdapter;
-    private List<Post> postList;
+    private ArticleAdapter articleAdapter;
+    private List<Article> listOfArticls;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,17 +44,19 @@ public class PostDetailFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        postList = new ArrayList<>();
-        postAdapter = new PostAdapter(getContext(), postList);
-        recyclerView.setAdapter(postAdapter);
+        listOfArticls = new ArrayList<>();
+        articleAdapter = new ArticleAdapter(getContext(), listOfArticls);
+        recyclerView.setAdapter(articleAdapter);
 
-        FirebaseDatabase.getInstance().getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
+
+        //Get the data of the post clicked by the user
+        FirebaseDatabase.getInstance().getReference().child("Articls").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                postList.clear();
-                postList.add(dataSnapshot.getValue(Post.class));
+                listOfArticls.clear();
+                listOfArticls.add(dataSnapshot.getValue(Article.class));
 
-                postAdapter.notifyDataSetChanged();
+                articleAdapter.notifyDataSetChanged();
             }
 
             @Override

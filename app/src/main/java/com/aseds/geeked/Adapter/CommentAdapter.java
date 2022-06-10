@@ -47,7 +47,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         this.postId = postId;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,11 +58,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-
         final Comment comment = mComments.get(position);
 
         holder.comment.setText(comment.getComment());
-
         FirebaseDatabase.getInstance().getReference().child("Users").child(comment.getPublisher()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,14 +80,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             }
         });
 
-        holder.comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, com.aseds.geeked.MainActivity.class);
-                intent.putExtra("publisherId", comment.getPublisher());
-                mContext.startActivity(intent);
-            }
-        });
 
         holder.imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +117,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
                             });
                         }
                     });
-
                     alertDialog.show();
                 }
 

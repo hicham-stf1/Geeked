@@ -12,12 +12,16 @@
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-anydpi/ic_heart.xml" value="0.1175" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-anydpi/ic_home.xml" value="0.1" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-anydpi/ic_inbox.xml" value="0.1175" />
+        <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-anydpi/ic_more.xml" value="0.18" />
+        <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-anydpi/ic_my_pictures.xml" value="0.18" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-mdpi/search_back.xml" value="0.1765" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable-mdpi/user.xml" value="0.1" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable/button_background.xml" value="0.128" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable/buttonshhape1.xml" value="0.1925" />
+        <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/drawable/save.xml" value="0.18" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/layout/activity_comment.xml" value="0.184375" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
+        <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/layout/activity_first_screen.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/layout/activity_followers.xml" value="0.184375" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/layout/activity_login.xml" value="0.184375" />
         <entry key="..\:/Users/PC/Desktop/Android/Geeked/app/src/main/res/layout/activity_main.xml" value="0.184375" />

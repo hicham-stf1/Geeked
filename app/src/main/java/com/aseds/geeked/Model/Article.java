@@ -1,16 +1,16 @@
 package com.aseds.geeked.Model;
 
-public class Post {
+public class Article {
 
     private String description;
     private String imageurl;
     private String postid;
     private String publisher;
 
-    public Post() {
+    public Article() {
     }
 
-    public Post(String description, String imageurl, String postid, String publisher) {
+    public Article(String description, String imageurl, String postid, String publisher) {
         this.description = description;
         this.imageurl = imageurl;
         this.postid = postid;

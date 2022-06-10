@@ -66,14 +66,10 @@ public class FollowersActivity extends AppCompatActivity {
             case "followers" :
                 getFollowers();
                 break;
-
             case "followings":
                 getFollowings();
                 break;
 
-            case "likes":
-                getLikes();
-                break;
         }
     }
 
@@ -95,7 +91,6 @@ public class FollowersActivity extends AppCompatActivity {
             }
         });
     }
-
     private void getFollowings() {
 
         FirebaseDatabase.getInstance().getReference().child("Follow").child(id).child("following").addValueEventListener(new ValueEventListener() {
@@ -115,26 +110,6 @@ public class FollowersActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void getLikes() {
-
-        FirebaseDatabase.getInstance().getReference().child("Likes").child(id).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                idList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    idList.add((snapshot.getKey()));
-                }
-                getUsers();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
     private void getUsers() {
 
         FirebaseDatabase.getInstance().getReference().child("Users").addValueEventListener(new ValueEventListener() {

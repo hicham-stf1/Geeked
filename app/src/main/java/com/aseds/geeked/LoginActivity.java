@@ -3,7 +3,6 @@ package com.aseds.geeked;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,63 +24,59 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button login;
-    private TextView registerUser;
+    private TextView register;
     private ImageView back;
 
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retailer_login);
+        setContentView(R.layout.activity_login);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
-        registerUser = findViewById(R.id.register_user);
+        register = findViewById(R.id.register_user);
         back = findViewById(R.id.login_back_button);
 
         mAuth = FirebaseAuth.getInstance();
 
-        registerUser.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, FirstScreen.class));
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this , RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                        startActivity(new Intent(LoginActivity.this,RetailerStartUpScreen.class));
-                    }
-        });
-
+        //check the entered values by the user and login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txt_email = email.getText().toString();
-                String txt_password = password.getText().toString();
+                String txtEmail = email.getText().toString();
+                String txtPassword = password.getText().toString();
 
-                if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
-                    Toast.makeText(LoginActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(txtEmail) || TextUtils.isEmpty(txtPassword)){
+                    Toast.makeText(LoginActivity.this, "No Credentials have been Entered!", Toast.LENGTH_SHORT).show();
                 } else {
-                    loginUser(txt_email , txt_password);
+                    login(txtEmail , txtPassword);
                 }
             }
         });
-
     }
 
-    private void loginUser(String email, String password) {
+    private void login(String email, String password) {
 
         mAuth.signInWithEmailAndPassword(email , password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-
-                   // Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this , MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

@@ -20,10 +20,10 @@ import com.aseds.geeked.Adapter.PhotoAdapter;
 import com.aseds.geeked.EditProfileActivity;
 import com.aseds.geeked.FollowersActivity;
 
-import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Model.Article;
 import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
-import com.aseds.geeked.RetailerStartUpScreen;
+import com.aseds.geeked.FirstScreen;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,17 +42,17 @@ public class ProfileFragment extends Fragment {
 
     private RecyclerView recyclerViewSaves;
     private PhotoAdapter postAdapterSaves;
-    private List<Post> mySavedPosts;
+    private List<Article> mySavedArticls;
 
     private RecyclerView recyclerView;
     private PhotoAdapter photoAdapter;
-    private List<Post> myPhotoList;
+    private List<Article> myPhotoList;
 
     private CircleImageView imageProfile;
     private ImageView options;
     private TextView followers;
     private TextView following;
-    private TextView posts;
+    private TextView articls;
     private TextView fullname;
     private TextView bio;
     private TextView username;
@@ -85,7 +85,7 @@ public class ProfileFragment extends Fragment {
         options = view.findViewById(R.id.options);
         followers = view.findViewById(R.id.followers);
         following = view.findViewById(R.id.following);
-        posts = view.findViewById(R.id.posts);
+        articls = view.findViewById(R.id.posts);
         fullname = view.findViewById(R.id.fullname);
         bio = view.findViewById(R.id.bio);
         username = view.findViewById(R.id.username);
@@ -103,30 +103,35 @@ public class ProfileFragment extends Fragment {
         recyclerViewSaves = view.findViewById(R.id.recucler_view_saved);
         recyclerViewSaves.setHasFixedSize(true);
         recyclerViewSaves.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        mySavedPosts = new ArrayList<>();
-        postAdapterSaves = new PhotoAdapter(getContext(), mySavedPosts);
+        mySavedArticls = new ArrayList<>();
+        postAdapterSaves = new PhotoAdapter(getContext(), mySavedArticls);
         recyclerViewSaves.setAdapter(postAdapterSaves);
 
         userInfo();
-        getFollowersAndFollowingCount();
-        getPostCount();
-        myPhotos();
-        getSavedPosts();
+        getNumberOfFollowersAndFollowing();
+        getNumberOfArticls();
+        getMyPictures();
+        getSavedArticls();
 
+        //We check if we are in the profile of the connected user
         if (profileId.equals(fUser.getUid())) {
             editProfile.setText("Edit profile");
         } else {
-            checkFollowingStatus();
+            verifyFollowingStatus();
         }
 
+
+        //We check the owner of the profile page
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String btnText = editProfile.getText().toString();
 
+                //If the user id the authenticaed we direct them to the edit profile page
                 if (btnText.equals("Edit profile")) {
                     startActivity(new Intent(getContext(), EditProfileActivity.class));
                 } else {
+                    //Else we check the followings status
                     if (btnText.equals("follow")) {
                         FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid())
                                 .child("following").child(profileId).setValue(true);
@@ -186,15 +191,17 @@ public class ProfileFragment extends Fragment {
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), RetailerStartUpScreen.class));
+                startActivity(new Intent(getContext(), FirstScreen.class));
 
             }
         });
         return view;
     }
 
-    private void getSavedPosts() {
+    //get the saved articls
+    private void getSavedArticls() {
 
+        //read saved articls from database
         final List<String> savedIds = new ArrayList<>();
 
         FirebaseDatabase.getInstance().getReference().child("Saves").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {
@@ -207,14 +214,14 @@ public class ProfileFragment extends Fragment {
                 FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                        mySavedPosts.clear();
+                        mySavedArticls.clear();
 
                         for (DataSnapshot snapshot1 : dataSnapshot1.getChildren()) {
-                            Post post = snapshot1.getValue(Post.class);
+                            Article article = snapshot1.getValue(Article.class);
 
                             for (String id : savedIds) {
-                                if (post.getPostid().equals(id)) {
-                                    mySavedPosts.add(post);
+                                if (article.getPostid().equals(id)) {
+                                    mySavedArticls.add(article);
                                 }
                             }
                         }
@@ -238,17 +245,19 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void myPhotos() {
+    //get the personal articls
+    private void getMyPictures() {
 
-        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+        //red your owns articls from database
+        FirebaseDatabase.getInstance().getReference().child("Articls").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 myPhotoList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = snapshot.getValue(Post.class);
+                    Article article = snapshot.getValue(Article.class);
 
-                    if (post.getPublisher().equals(profileId)) {
-                        myPhotoList.add(post);
+                    if (article.getPublisher().equals(profileId)) {
+                        myPhotoList.add(article);
                     }
                 }
 
@@ -264,8 +273,10 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void checkFollowingStatus() {
 
+    private void verifyFollowingStatus() {
+
+        //Check the state of the user (followed or not)
         FirebaseDatabase.getInstance().getReference().child("Follow").child(fUser.getUid()).child("following").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -284,19 +295,20 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void getPostCount() {
+    //Get the articls count
+    private void getNumberOfArticls() {
 
         FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int counter = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = snapshot.getValue(Post.class);
+                    Article article = snapshot.getValue(Article.class);
 
-                    if (post.getPublisher().equals(profileId)) counter ++;
+                    if (article.getPublisher().equals(profileId)) counter ++;
                 }
 
-                posts.setText(String.valueOf(counter));
+                articls.setText(String.valueOf(counter));
             }
 
             @Override
@@ -307,7 +319,9 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void getFollowersAndFollowingCount() {
+
+    //Get the count of followings and followers
+    private void getNumberOfFollowersAndFollowing() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId);
 
@@ -337,6 +351,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    //Get the user data from realtime database
     private void userInfo() {
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(profileId).addValueEventListener(new ValueEventListener() {

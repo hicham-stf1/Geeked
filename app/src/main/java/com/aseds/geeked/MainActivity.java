@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_search :
                         selectorFragment = new SearchFragment();
                         break;
-
-
-
                     case R.id.nav_profile :
                         selectorFragment = new ProfileFragment();
                         break;
@@ -59,16 +56,13 @@ public class MainActivity extends AppCompatActivity {
                 if (selectorFragment != null){
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
                 }
-
                 return  true;
-
             }
         });
 
+
         Bundle intent = getIntent().getExtras();
-
         if (intent != null) {
-
             String profileId = intent.getString("publisherId");
             getSharedPreferences("PROFILE", MODE_PRIVATE).edit().putString("profileId", profileId).apply();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();

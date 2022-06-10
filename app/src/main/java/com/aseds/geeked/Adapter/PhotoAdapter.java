@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aseds.geeked.Fragments.PostDetailFragment;
-import com.aseds.geeked.Model.Post;
+import com.aseds.geeked.Fragments.ArticleDetailFragment;
+import com.aseds.geeked.Model.Article;
 import com.aseds.geeked.R;
 
 
@@ -22,14 +22,12 @@ import java.util.List;
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
 
     private final Context mContext;
-    private final List<Post> mPosts;
+    private final List<Article> mArticls;
 
-    public PhotoAdapter(Context mContext, List<Post> mPosts) {
+    public PhotoAdapter(Context mContext, List<Article> mArticls) {
         this.mContext = mContext;
-        this.mPosts = mPosts;
+        this.mArticls = mArticls;
     }
-
-
 
     @NonNull
     @Override
@@ -41,16 +39,17 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        final Post post = mPosts.get(position);
-        Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.postImage);
+        //get the clicked picture
+        final Article post = mArticls.get(position);
+        Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.articleImage);
 
-        holder.postImage.setOnClickListener(new View.OnClickListener() {
+        holder.articleImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit().putString("postid", post.getPostid()).apply();
 
                 ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new PostDetailFragment()).commit();
+                        .replace(R.id.fragment_container, new ArticleDetailFragment()).commit();
             }
         });
 
@@ -58,17 +57,17 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mPosts.size();
+        return mArticls.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView postImage;
+        public ImageView articleImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            postImage = itemView.findViewById(R.id.post_image);
+            articleImage = itemView.findViewById(R.id.post_image);
         }
     }
 

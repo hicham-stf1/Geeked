@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aseds.geeked.Adapter.TagAdapter;
 import com.aseds.geeked.Adapter.UserAdapter;
 import com.aseds.geeked.Model.User;
 import com.aseds.geeked.R;
@@ -34,13 +33,8 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private List<User> mUsers;
+    private List<User> users;
     private UserAdapter userAdapter;
-
-    private RecyclerView recyclerViewTags;
-    private List<String> mHashTags;
-    private List<String> mHashTagsCount;
-    private TagAdapter tagAdapter;
 
     private SocialAutoCompleteTextView search_bar;
 
@@ -53,23 +47,14 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerViewTags = view.findViewById(R.id.recycler_view_tags);
-        recyclerViewTags.setHasFixedSize(true);
-        recyclerViewTags.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mHashTags = new ArrayList<>();
-        mHashTagsCount = new ArrayList<>();
-        tagAdapter = new TagAdapter(getContext() , mHashTags , mHashTagsCount);
-        recyclerViewTags.setAdapter(tagAdapter);
-
-        mUsers = new ArrayList<>();
-        userAdapter = new UserAdapter(getContext() , mUsers , true);
+        search_bar = view.findViewById(R.id.search_bar);
+       users = new ArrayList<>();
+        userAdapter = new UserAdapter(getContext() , users , true);
         recyclerView.setAdapter(userAdapter);
 
-        search_bar = view.findViewById(R.id.search_bar);
+
 
         readUsers();
-        //readTags();
 
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,37 +69,14 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                filter(s.toString());
+
             }
         });
 
         return view;
     }
 
-   /* private void readTags() {
-
-        FirebaseDatabase.getInstance().getReference().child("HashTags").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mHashTags.clear();
-                mHashTagsCount.clear();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    mHashTags.add(snapshot.getKey());
-                    mHashTagsCount.add(snapshot.getChildrenCount() + "");
-                }
-
-                tagAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }*/
-
+    //get all users
     private void readUsers() {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -122,10 +84,10 @@ public class SearchFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (TextUtils.isEmpty(search_bar.getText().toString())){
-                    mUsers.clear();
+                    users.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                         User user = snapshot.getValue(User.class);
-                        mUsers.add(user);
+                        users.add(user);
                     }
 
                     userAdapter.notifyDataSetChanged();
@@ -140,6 +102,7 @@ public class SearchFragment extends Fragment {
 
     }
 
+    //get the entered username if exist
     private void searchUser (String s) {
         Query query = FirebaseDatabase.getInstance().getReference().child("Users")
                 .orderByChild("username").startAt(s).endAt(s + "\uf8ff");
@@ -147,10 +110,10 @@ public class SearchFragment extends Fragment {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mUsers.clear();
+                users.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    mUsers.add(user);
+                    users.add(user);
                 }
                 userAdapter.notifyDataSetChanged();
             }
@@ -162,17 +125,5 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private void filter (String text) {
-        List<String> mSearchTags = new ArrayList<>();
-        List<String> mSearchTagsCount = new ArrayList<>();
 
-        for (String s : mHashTags) {
-            if (s.toLowerCase().contains(text.toLowerCase())){
-                mSearchTags.add(s);
-                mSearchTagsCount.add(mHashTagsCount.get(mHashTags.indexOf(s)));
-            }
-        }
-
-        tagAdapter.filter(mSearchTags , mSearchTagsCount);
-    }
 }

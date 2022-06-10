@@ -83,7 +83,7 @@ public class PostActivity extends AppCompatActivity {
         pd.show();
 
         if (imageUri != null){
-            final StorageReference filePath = FirebaseStorage.getInstance().getReference("Posts").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+            final StorageReference filePath = FirebaseStorage.getInstance().getReference("Articls").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
 
             StorageTask<UploadTask.TaskSnapshot> uploadtask = filePath.putFile(imageUri);
             uploadtask.continueWithTask(new Continuation() {
@@ -101,7 +101,7 @@ public class PostActivity extends AppCompatActivity {
                     Uri downloadUri = task.getResult();
                     imageUrl = downloadUri.toString();
 
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Articls");
                     String postId = ref.push().getKey();
 
                     HashMap<String , Object> map = new HashMap<>();
@@ -111,19 +111,6 @@ public class PostActivity extends AppCompatActivity {
                     map.put("publisher" , FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.child(postId).setValue(map);
-
-                    DatabaseReference mHashTagRef = FirebaseDatabase.getInstance().getReference().child("HashTags");
-                    List<String> hashTags = description.getHashtags();
-                    if (!hashTags.isEmpty()){
-                        for (String tag : hashTags){
-                            map.clear();
-
-                            map.put("tag" , tag.toLowerCase());
-                            map.put("postid" , postId);
-
-                            mHashTagRef.child(tag.toLowerCase()).child(postId).setValue(map);
-                        }
-                    }
 
                     pd.dismiss();
                     startActivity(new Intent(PostActivity.this , MainActivity.class));
@@ -138,7 +125,6 @@ public class PostActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "No image was selected!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private String getFileExtension(Uri uri) {
@@ -166,23 +152,5 @@ public class PostActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        final ArrayAdapter<Hashtag> hashtagAdapter = new HashtagArrayAdapter<>(getApplicationContext());
-
-        FirebaseDatabase.getInstance().getReference().child("HashTags").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    hashtagAdapter.add(new Hashtag(snapshot.getKey() , (int) snapshot.getChildrenCount()));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        description.setHashtagAdapter(hashtagAdapter);
     }
 }

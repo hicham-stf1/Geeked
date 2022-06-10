@@ -83,7 +83,6 @@ public class CommentActivity extends AppCompatActivity {
         post = findViewById(R.id.post);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-
         getUserImage();
 
         post.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +91,7 @@ public class CommentActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(addComment.getText().toString())) {
                     Toast.makeText(CommentActivity.this, "No comment added!", Toast.LENGTH_SHORT).show();
                 } else {
-                    putComment();
+                    addComment();
                 }
             }
         });
@@ -111,7 +110,6 @@ public class CommentActivity extends AppCompatActivity {
                     Comment comment = snapshot.getValue(Comment.class);
                     commentList.add(comment);
                 }
-
                 commentAdapter.notifyDataSetChanged();
                 
             }
@@ -121,10 +119,9 @@ public class CommentActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
-    private void putComment() {
+    private void addComment() {
 
         HashMap<String, Object> map = new HashMap<>();
 
@@ -135,8 +132,8 @@ public class CommentActivity extends AppCompatActivity {
         map.put("id", id);
         map.put("comment", addComment.getText().toString());
         map.put("publisher", fUser.getUid());
-
         addComment.setText("");
+
 
         ref.child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -148,11 +145,9 @@ public class CommentActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void getUserImage() {
-
         FirebaseDatabase.getInstance().getReference().child("Users").child(fUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -164,7 +159,6 @@ public class CommentActivity extends AppCompatActivity {
                     Picasso.get().load(user.getImageurl()).into(imageProfile);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retailer_sign_up);
+        setContentView(R.layout.activity_sign_up);
 
         username = findViewById(R.id.username);
         name = findViewById(R.id.name);
@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegisterActivity.this,RetailerStartUpScreen.class));
+                startActivity(new Intent(RegisterActivity.this, FirstScreen.class));
             }
         });
 

@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RetailerStartUpScreen" />
+        <activity android:name=".FirstScreen" />
         <activity android:name=".FollowersActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".CommentActivity" />
